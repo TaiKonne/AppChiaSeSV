@@ -1,14 +1,18 @@
-import React from 'react';
-import { View, Text,Switch } from 'react-native'
+import React, { useState } from 'react';
+import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/Entypo'
+import { Button } from 'react-native-paper';
+
 const Index = () => {
+
+    const [mail, setMail] = useState()
+
+
     return <View>
-        <Text>
-            mmmmmmmmmmmmm
-        </Text>
-        <Icon2 name="switch" size={50} color="green" />
-        <Icon name="twitter" size={50} />
+        <Button icon="camera" mode="contained" onPress={() => console.log('Pressed')}>
+            Press me
+        </Button>
     </View>
 }
 
