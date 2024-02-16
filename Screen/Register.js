@@ -5,11 +5,10 @@ import Icon2 from 'react-native-vector-icons/Entypo'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
-const Login = ({ navigation }) => {
+const Register = ({ navigation }) => {
 
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
-
 
 
     return (
@@ -17,33 +16,50 @@ const Login = ({ navigation }) => {
             backgroundColor: '#1d1d27',
             flex: 1,
         }}>
-            <KeyboardAwareScrollView>
-                <Image
-                    source={require('../Img/tdmu_logo.png')}
-                    style={{
-                        marginTop: 40,
-                        marginRight: 34,
-                        width: 260,
-                        height: 125,
-                        resizeMode: 'stretch',
-                        alignSelf: 'center',
-                        // marginHorizontal:10 cho xung quanh khoản cách là 10px
+
+            <Image
+                source={require('../Img/tdmu_logo.png')}
+                style={{
+                    marginTop: 40,
+                    marginRight: 34,
+                    width: 260,
+                    height: 125,
+                    resizeMode: 'stretch',
+                    alignSelf: 'center',
+                    // marginHorizontal:10 cho xung quanh khoản cách là 10px
+                }}
+
+            />
+
+            <Text
+                style={{
+                    alignSelf: 'center',
+                    marginTop: 50,
+                    fontSize: 20,
+                    fontWeight: '800',
+                    color: 'red',
+                    textAlign: 'center'
+                }}>
+                ĐĂNG KÝ TÀI KHOẢN
+            </Text>
+                <TextInput
+                    onChange={txt => {
+                        setEmail(txt);
                     }}
-
-                />
-
-                <Text
+                    placeholder="Họ và tên"
+                    placeholderTextColor={'grey'}
                     style={{
+                        width: '84%',
+                        height: 50,
+                        borderRadius: 10,
+                        borderWidth: 0.5,
                         alignSelf: 'center',
-                        marginTop: 50,
-                        fontSize: 20,
-                        fontWeight: '800',
-                        color: 'red',
-                        textAlign: 'center'
-                    }}>
-                    TRAO ĐỔI ĐỒ DÙNG TDMU
-                </Text>
-
+                        paddingLeft: 15,
+                        marginTop: 45,
+                        color: 'black',
+                        backgroundColor: '#2a293b'
+                    }}
+                />
                 <TextInput
                     value={email}
                     onChange={txt => {
@@ -59,7 +75,7 @@ const Login = ({ navigation }) => {
                         borderWidth: 0.5,
                         alignSelf: 'center',
                         paddingLeft: 15,
-                        marginTop: 45,
+                        marginTop: 25,
                         color: 'black',
                         backgroundColor: '#2a293b'
                     }}
@@ -86,20 +102,6 @@ const Login = ({ navigation }) => {
                 />
 
                 <TouchableOpacity
-                onPress={()=>{
-                    navigation.navigate('ForgotPass')
-                }}
-                >
-                    <Text style={{
-                        marginTop: 10,
-                        fontSize: 13,
-                        alignSelf: 'center',
-                        color: 'white',
-                    }}>
-                        Quên mật khẩu?
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
                     style={{
                         width: '60%',
                         height: 50,
@@ -113,29 +115,30 @@ const Login = ({ navigation }) => {
                     onPress={() => {
 
                     }}>
-                    <Text style={{ fontSize: 20, color: 'white', }}>Đăng nhập</Text>
+                    <Text style={{ fontSize: 20, color: 'white', }}>Đăng ký</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    style={{
-                        width: '84%',
-                        height: 50,
-                        // backgroundColor: 'orange',
-                        borderRadius: 10,
-                        marginTop: 20,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        alignSelf: 'center',
-                    }}
-                    onPress={() => {
-                        navigation.navigate('Register');
-                    }}>
-                    <Text style={{ fontSize: 15, color: 'white', }}>
-                        Đăng ký
-                    </Text>
-                </TouchableOpacity>
-            </KeyboardAwareScrollView>
+
+            <TouchableOpacity
+                style={{
+                    width: '84%',
+                    height: 50,
+                    // backgroundColor: 'orange',
+                    borderRadius: 10,
+                    marginTop: 20,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                }}
+                onPress={() => {
+                    navigation.navigate('Login');
+                }}>
+                <Text style={{ fontSize: 15, color: 'white', }}>
+                    Back to Login
+                </Text>
+            </TouchableOpacity>
+
         </View>
     )
 
 }
-export default Login;
+export default Register;
