@@ -2,10 +2,12 @@
  * @format
  */
 
-import {AppRegistry} from 'react-native';
+import {AppRegistry,LogBox} from 'react-native';
 import Index from './Screen/Index';
 import Login from './Screen/Login';
 import Splash from './Screen/Splash';
+import AppNavigator from './Screen/AppNavigator';
+import React from 'react';
 import {name as appName} from './app.json';
-
-AppRegistry.registerComponent(appName, () => Splash);
+LogBox.ignoreAllLogs();
+AppRegistry.registerComponent(appName, () => Login)
