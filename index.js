@@ -9,7 +9,8 @@ import Splash from './Screen/Splash';
 import AppNavigator from './Screen/AppNavigator';
 import React from 'react';
 import Register from './Screen/Register';
+import HomeTab from './Screen/HomeTab';
 import {name as appName} from './app.json';
 LogBox.ignoreAllLogs();
 enableScreens(true)
-AppRegistry.registerComponent(appName, () => AppNavigator)
+AppRegistry.registerComponent(appName, () => HomeTab)
