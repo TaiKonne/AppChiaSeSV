@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "943162361832",
+    "project_id": "trade-belongings",
+    "storage_bucket": "trade-belongings.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943162361832:android:dae5e26043e5d09c53065d",
+        "android_client_info": {
+          "package_name": "com.appchiasesv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwFmUKhVebguG7HnaJN6lstxBhFR69tmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
