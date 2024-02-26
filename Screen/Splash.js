@@ -11,7 +11,6 @@ const Splash = ({ navigation }) => {
     }, []);
 
     const checkLogin = async () => {
-        // const userId = await AsyncStorage.getItem('USERID');
 
         navigation.navigate('Login');
         // }
