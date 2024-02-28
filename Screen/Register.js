@@ -1,15 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, Image } from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome';
-import Icon2 from 'react-native-vector-icons/Entypo'
+
+import uuid from 'react-native-uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import firestore from '@react-native-firebase/firestore';
+
 
 const Register = ({ navigation }) => {
 
+    // useEffect(() => {
+
+    // })
+
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [hoTen, SetHoTen] = useState('');
 
+    const createAccount = () => {
+        let id = uuid.v4();
+        firestore()
+        .collection('Users')
+        .add({
+          name: 'Ada Lovelace',
+          age: 30,
+        })
+        .then(() => {
+          console.log('User added!');
+        });
+    };
+
+    const saveLocalData = async () => {
+        await AsyncStorage.setItem('NAME', hoTen);
+        await AsyncStorage.setItem('EMAIL', email);
+        await AsyncStorage.setItem('PASSWORD', pass);
+    };
 
     return (
         <View style={{
@@ -42,81 +66,83 @@ const Register = ({ navigation }) => {
                 }}>
                 ĐĂNG KÝ TÀI KHOẢN
             </Text>
-                <TextInput
-                    onChange={txt => {
-                        setEmail(txt);
-                    }}
-                    placeholder="Họ và tên"
-                    placeholderTextColor={'grey'}
-                    style={{
-                        width: '84%',
-                        height: 50,
-                        borderRadius: 10,
-                        borderWidth: 0.5,
-                        alignSelf: 'center',
-                        paddingLeft: 15,
-                        marginTop: 45,
-                        color: 'black',
-                        backgroundColor: '#2a293b'
-                    }}
-                />
-                <TextInput
-                    value={email}
-                    onChange={txt => {
-                        setEmail(txt);
-                    }}
-                    placeholder="Gmail"
-                    placeholderTextColor={'grey'}
-                    keyboardType='email-address'
-                    style={{
-                        width: '84%',
-                        height: 50,
-                        borderRadius: 10,
-                        borderWidth: 0.5,
-                        alignSelf: 'center',
-                        paddingLeft: 15,
-                        marginTop: 25,
-                        color: 'black',
-                        backgroundColor: '#2a293b'
-                    }}
-                />
-                <TextInput
-                    value={pass}
-                    onChange={txt => {
-                        setPass(txt);
-                    }}
-                    placeholder="Mật khẩu"
-                    placeholderTextColor={'grey'}
-                    secureTextEntry={true}
-                    style={{
-                        width: '84%',
-                        height: 50,
-                        borderRadius: 10,
-                        borderWidth: 0.5,
-                        alignSelf: 'center',
-                        paddingLeft: 15,
-                        marginTop: 20,
-                        color: 'black',
-                        backgroundColor: '#2a293b'
-                    }}
-                />
+            <TextInput // họ và tên 
+                value={hoTen}
+                onChange={txt => {
+                    SetHoTen(txt);
+                }}
+                placeholder="Họ và tên"
+                placeholderTextColor={'grey'}
+                style={{
+                    width: '84%',
+                    height: 50,
+                    borderRadius: 10,
+                    borderWidth: 0.5,
+                    alignSelf: 'center',
+                    paddingLeft: 15,
+                    marginTop: 45,
+                    color: 'white',
+                    backgroundColor: '#2a293b'
+                }}
+            />
 
-                <TouchableOpacity
-                    style={{
-                        width: '60%',
-                        height: 50,
-                        backgroundColor: '#cb2a5c',
-                        borderRadius: 40,
-                        marginTop: 30,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        alignSelf: 'center',
-                    }}
-                    onPress={() => {
+            <TextInput // email
+                value={email}
+                onChange={txt => {
+                    setEmail(txt);
+                }}
+                placeholder="Gmail"
+                placeholderTextColor={'grey'}
+                keyboardType='email-address'
+                style={{
+                    width: '84%',
+                    height: 50,
+                    borderRadius: 10,
+                    borderWidth: 0.5,
+                    alignSelf: 'center',
+                    paddingLeft: 15,
+                    marginTop: 25,
+                    color: 'white',
+                    backgroundColor: '#2a293b'
+                }}
+            />
+            <TextInput
+                value={pass}
+                onChange={txt => {
+                    setPass(txt);
+                }}
+                placeholder="Mật khẩu"
+                placeholderTextColor={'grey'}
+                secureTextEntry={true}
+                style={{
+                    width: '84%',
+                    height: 50,
+                    borderRadius: 10,
+                    borderWidth: 0.5,
+                    alignSelf: 'center',
+                    paddingLeft: 15,
+                    marginTop: 20,
+                    color: 'white',
+                    backgroundColor: '#2a293b'
+                }}
+            />
 
-                    }}>
-                    <Text style={{ fontSize: 20, color: 'white', }}>Đăng ký</Text>
-                </TouchableOpacity>
+            <TouchableOpacity
+                style={{
+                    width: '60%',
+                    height: 50,
+                    backgroundColor: '#cb2a5c',
+                    borderRadius: 40,
+                    marginTop: 30,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    alignSelf: 'center',
+                }}
+                onPress={() => {
+                    createAccount();
+                }}>
+                <Text style={{ fontSize: 20, color: 'white', }}>Đăng ký</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity
                 style={{

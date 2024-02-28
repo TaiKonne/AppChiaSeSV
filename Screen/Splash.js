@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Splash = ({ navigation }) => {
-    
+
     useEffect(() => {
         setTimeout(() => {
             checkLogin();
@@ -11,7 +11,7 @@ const Splash = ({ navigation }) => {
     }, []);
 
     const checkLogin = async () => {
-
+        const createItemUser = await AsyncStorage.getItem('USERID')
         navigation.navigate('Login');
         // }
     };
