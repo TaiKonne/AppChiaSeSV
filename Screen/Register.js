@@ -4,7 +4,7 @@ import { View, Text, TextInput, Button, TouchableOpacity, Image } from 'react-na
 import uuid from 'react-native-uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-
+import messaging from '@react-native-firebase/messaging'
 
 const Register = ({ navigation }) => {
 
@@ -13,21 +13,31 @@ const Register = ({ navigation }) => {
     // })
 
     const [email, setEmail] = useState('');
-    const [pass, setPass] = useState('');
-    const [hoTen, SetHoTen] = useState('');
+    const [pass, setPass] = useState();
+    const [hoTen, SetHoTen] = useState();
 
     const createAccount = () => {
         let id = uuid.v4();
+        // console.log(hoTen);
         firestore()
-        .collection('Users')
-        .add({
-          name: 'Ada Lovelace',
-          age: 30,
-        })
-        .then(() => {
-          console.log('User added!');
-        });
+            .collection('Users')
+            .doc(id)
+            .set({
+                name: hoTen,
+                email: email,
+                password: pass,
+                userId: id,
+            })
+            .then(() => {
+                console.log('User added!');
+                getToken();
+            });
     };
+
+    const getToken = async () => {
+        const token = await messaging().getToken();
+        console.log("token: " + token);
+    }
 
     const saveLocalData = async () => {
         await AsyncStorage.setItem('NAME', hoTen);
@@ -68,7 +78,7 @@ const Register = ({ navigation }) => {
             </Text>
             <TextInput // họ và tên 
                 value={hoTen}
-                onChange={txt => {
+                onChangeText={txt => {
                     SetHoTen(txt);
                 }}
                 placeholder="Họ và tên"
@@ -88,7 +98,7 @@ const Register = ({ navigation }) => {
 
             <TextInput // email
                 value={email}
-                onChange={txt => {
+                onChangeText={txt => {
                     setEmail(txt);
                 }}
                 placeholder="Gmail"
@@ -108,7 +118,7 @@ const Register = ({ navigation }) => {
             />
             <TextInput
                 value={pass}
-                onChange={txt => {
+                onChangeText={txt => {
                     setPass(txt);
                 }}
                 placeholder="Mật khẩu"

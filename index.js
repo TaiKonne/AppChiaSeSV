@@ -13,4 +13,4 @@ import HomeTab from './Screen/HomeTab';
 import {name as appName} from './app.json';
 LogBox.ignoreAllLogs();
 enableScreens(true)
-AppRegistry.registerComponent(appName, () => AppNavigator)
+AppRegistry.registerComponent(appName, () => HomeTab)
